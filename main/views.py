@@ -1,7 +1,9 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 
 from models import UserProfile
 from forms import UserProfileForm, UserForm
+
+from django.contrib.auth import authenticate, login, logout
 
 
 def index(request):
@@ -42,3 +44,23 @@ def register(request):
     }
 
     return render(request, "register.html", context_dict)
+
+
+def user_login(request):
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+
+        if user:
+            if user.is_active():
+                login(request, user)
+                return HttpResponseRedirect('/main/')
+            else:
+                return HttpResponse("Disabled account")
+        else:
+            return HttpResponse("Invalid login details!")
+    else:
+        return render(request, "login.html", {})
