@@ -4,6 +4,7 @@ from models import UserProfile
 from forms import UserProfileForm, UserForm
 
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -64,3 +65,17 @@ def user_login(request):
             return HttpResponse("Invalid login details!")
     else:
         return render(request, "login.html", {})
+
+
+def some_data(request):
+    if request.user.is_authenticated():
+        return render(request, "some_data.html", {})
+    else:
+        return HttpResponse("You are not authorized in this page!!")
+
+
+@login_required
+def user_logout(request):
+    logout(request)
+
+    return HttpResponseRedirect('/main/')

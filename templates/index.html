@@ -6,9 +6,16 @@
 </head>
 <body>
 
-Hello! Weocome to my website.<br>
-Click <a href="/main/register/">here</a> to register!<br>
-Click <a href="/main/login/">here</a> to login!
+
+{% if user.is_authenticated %}
+    Welcome {{ user.username }}<br>
+    You are successfully logged in!<br>
+    To logout, click <a href="/main/logout/">here</a>.
+{% else %}
+    Hello! Weocome to my website.<br>
+    Click <a href="/main/register/">here</a> to register!<br>
+    Click <a href="/main/login/">here</a> to login!
+{% endif %}
 
 </body>
 </html>
