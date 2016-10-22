@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
 
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, null=True)
+
     website = models.URLField(blank=True)
     score = models.IntegerField(blank=True)
 

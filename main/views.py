@@ -5,7 +5,8 @@ from forms import UserProfileForm, UserForm
 
 
 def index(request):
-    return HttpResponse("Hello!")
+    # return HttpResponse("Hello!")
+    return render(request, "index.html")
 
 
 def register(request):
