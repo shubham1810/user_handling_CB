@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 
 from models import UserProfile
 from forms import UserProfileForm, UserForm
+
+
+def index(request):
+    return HttpResponse("Hello!")
 
 
 def register(request):
