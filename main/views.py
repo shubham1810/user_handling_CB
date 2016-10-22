@@ -55,7 +55,7 @@ def user_login(request):
         user = authenticate(username=username, password=password)
 
         if user:
-            if user.is_active():
+            if user.is_active:
                 login(request, user)
                 return HttpResponseRedirect('/main/')
             else:
