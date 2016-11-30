@@ -82,7 +82,7 @@ def user_logout(request):
 
 @login_required
 def leaderboard(request):
-    users = UserProfile.objects.all()
+    users = UserProfile.objects.all().order_by('-score')
     data = []
     for user in users:
         data.append([user.user.username, user.score])
