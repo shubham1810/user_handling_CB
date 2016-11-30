@@ -79,3 +79,17 @@ def user_logout(request):
     logout(request)
 
     return HttpResponseRedirect('/main/')
+
+@login_required
+def leaderboard(request):
+    users = UserProfile.objects.all()
+    data = []
+    for user in users:
+        data.append([user.user.username, user.score])
+
+    context_dict = {
+        'data': data
+    }
+
+    # return HttpResponse("A")
+    return render(request, "leaderboard.html", context_dict)
