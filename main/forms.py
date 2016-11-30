@@ -16,4 +16,4 @@ class UserProfileForm(forms.ModelForm):
     # password = forms.CharField(widget=forms.PasswordInput())
     class Meta:
         model = UserProfile
-        fields = ('website', 'score')
+        # fields = ('website', 'score')
