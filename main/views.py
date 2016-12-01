@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 
-from models import UserProfile
+from models import *
 from forms import UserProfileForm, UserForm
 
 from django.contrib.auth import authenticate, login, logout
@@ -83,6 +83,13 @@ def user_logout(request):
 @login_required
 def leaderboard(request):
     users = UserProfile.objects.all().order_by('-score')
+
+    assign_code = request.GET.get('a_code') or None
+    if not assign_name is None:
+        assignment = Assignment.objects.filter(assignment_code=assign_code)
+        submission = submission.objects.filter()
+    else:
+        pass
     data = []
     for user in users:
         data.append([user.user.username, user.score])

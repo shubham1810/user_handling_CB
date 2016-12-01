@@ -15,6 +15,7 @@ class UserProfile(models.Model):
 
 class Assignment(models.Model):
 
+	assignment_code = models.CharField(max_length=10)
 	assignment_name = models.CharField(max_length=50)
 	question = models.CharField(max_length=500)
 
@@ -32,6 +33,7 @@ class Submission(models.Model):
 
 	timestamp = models.DateTimeField(auto_now_add=True)
 	score = models.IntegerField(default=0)
+	number_of_submissions = models.IntegerField(default=0)
 
 	def __unicode__(self):
 		return self.assignment.assignment_name
